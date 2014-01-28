@@ -4,7 +4,7 @@ Requires at least: 3.5
 Tested up to: 3.8
 Stable tag: 1.1
 License: GPLv3
-Contributors: dharmapoudel(me)
+Contributors: dharmapoudel
 
 Allows user to select menu items page wise.
 
