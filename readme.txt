@@ -2,7 +2,7 @@
 Tags: page specific menu items, menu, menu items, page wise menu,
 Requires at least: 3.5
 Tested up to: 3.8
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv3
 Contributors: dharmapoudel
 
