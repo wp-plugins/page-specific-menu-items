@@ -66,16 +66,7 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 		* install 
 		**/
 		public static function psmi_install() {
-			
-			$menu_id ='';
-			$menus = wp_get_nav_menus();
-			foreach ( $menus as $menu) {
-				if (wp_get_nav_menu_items( $menu->term_id, array( 'update_post_term_cache' => false ) )) {
-					$menu_id = $menu->term_id;
-					break;
-				}
-			}
-			add_option('psmi_defaults', array('post_type'=>array('page'),'menu_id'=>$menu_id));
+			// do nothing
 		}
 
 
@@ -95,15 +86,25 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 		**/
 		function psmi_init() {
 			//initialize
-			$this->psmi_defaults = array_merge($this->psmi_defaults, get_option( 'psmi_defaults' ));
+			$menu_id ='';
+			$menus = wp_get_nav_menus();
+			foreach ( $menus as $menu) {
+				if (wp_get_nav_menu_items( $menu->term_id, array( 'update_post_term_cache' => false ) )) {
+					$menu_id = $menu->term_id;
+					break;
+				}
+			}
+			
+			$this->psmi_defaults = get_option( 'psmi_defaults' ) 
+				? get_option( 'psmi_defaults' ) 
+				: array('post_type'=>array('page'),'menu_id'=>$menu_id);
 
 			if(function_exists('load_plugin_textdomain')) {
 				load_plugin_textdomain(PSMI_TEXTDOMAIN, false, dirname(plugin_basename( __FILE__ )) . '/l10n/');
 			}
 			
 		}
-		
-		
+
 		
 		/**
 		 * adds plugin options page
