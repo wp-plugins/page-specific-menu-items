@@ -2,7 +2,7 @@
 Tags: page specific menu items, menu, menu items, page wise menu,
 Requires at least: 3.5
 Tested up to: 3.8
-Stable tag: 1.2
+Stable tag: 1.4.2
 License: GPLv3
 Contributors: dharmapoudel
 
@@ -38,8 +38,21 @@ If you found any bugs/issues please report and I'll try to fix them asap.
 3. Configure plugin from 'Settings > PS Menu Items'
 
 == Screenshots ==
+1. Page Specific Menu Items: plugin settings
+2. Page Specific Menu Items: page specific settings
 
 == Changelog ==
+
+= 1.4.2 (2014-2-4) =
+* Added support for custom post types
+* Added screenshots
+
+= 1.3 (2014-2-3) =
+* Fixed the warning on plugin install
+* Plugin should now work smoothly
+
+= 1.2 (2014-1-29) =
+* Bug fixes and optimization
 
 = 1.1 (2014-1-28) =
 * Fixed menu selection on setting page
