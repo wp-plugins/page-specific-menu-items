@@ -3,7 +3,7 @@
  * Plugin Name: Page Specific Menu Items
  * Plugin URI: http://www.wordpress.org/plugins
  * Description: This plugin allows you to select menu items page wise.
- * Version: 1.4
+ * Version: 1.4.1
  * Author: Dharma Poudel (@rogercomred)
  * Author URI: https://www.twitter.com/rogercomred
  * Text Domain: page-specific-menu-items

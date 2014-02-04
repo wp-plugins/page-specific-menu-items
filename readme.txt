@@ -43,8 +43,9 @@ If you found any bugs/issues please report and I'll try to fix them asap.
 
 == Changelog ==
 
-= 1.4 (2014-2-4) =
+= 1.4.1 (2014-2-4) =
 * Added support for custom post types
+* Added screenshots
 
 = 1.3 (2014-2-3) =
 * Fixed the warning on plugin install
