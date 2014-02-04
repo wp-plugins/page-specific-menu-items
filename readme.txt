@@ -2,7 +2,7 @@
 Tags: page specific menu items, menu, menu items, page wise menu,
 Requires at least: 3.5
 Tested up to: 3.8
-Stable tag: 1.4
+Stable tag: 1.4.2
 License: GPLv3
 Contributors: dharmapoudel
 
@@ -43,7 +43,7 @@ If you found any bugs/issues please report and I'll try to fix them asap.
 
 == Changelog ==
 
-= 1.4.1 (2014-2-4) =
+= 1.4.2 (2014-2-4) =
 * Added support for custom post types
 * Added screenshots
 
