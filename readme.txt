@@ -2,7 +2,7 @@
 Tags: page specific menu items, menu, menu items, page wise menu,
 Requires at least: 3.5
 Tested up to: 3.8
-Stable tag: 1.3.2
+Stable tag: 1.4
 License: GPLv3
 Contributors: dharmapoudel
 
@@ -40,6 +40,9 @@ If you found any bugs/issues please report and I'll try to fix them asap.
 == Screenshots ==
 
 == Changelog ==
+
+= 1.4 (2014-2-4) =
+* Added support for custom post types
 
 = 1.3 (2014-2-3) =
 * Fixed the warning on plugin install
