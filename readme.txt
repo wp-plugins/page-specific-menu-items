@@ -38,6 +38,8 @@ If you found any bugs/issues please report and I'll try to fix them asap.
 3. Configure plugin from 'Settings > PS Menu Items'
 
 == Screenshots ==
+1. Page Specific Menu Items: plugin settings
+2. Page Specific Menu Items: page specific settings
 
 == Changelog ==
 
