@@ -3,15 +3,15 @@
  * Plugin Name: Page Specific Menu Items
  * Plugin URI: http://www.wordpress.org/plugins
  * Description: This plugin allows you to select menu items page wise.
- * Version: 1.2
+ * Version: 1.4.1
  * Author: Dharma Poudel (@rogercomred)
  * Author URI: https://www.twitter.com/rogercomred
- * Text Domain: psmi-menu-items
+ * Text Domain: page-specific-menu-items
  * Domain Path: /l10n
  */
  
 //define some constants
-if (!defined('PSMI_TEXTDOMAIN'))	define('PSMI_TEXTDOMAIN', 'psmi-menu-items');
+if (!defined('PSMI_TEXTDOMAIN'))	define('PSMI_TEXTDOMAIN', 'page-specific-menu-items');
  
 if(!class_exists('Page_Specific_Menu_Items')) {
 
@@ -47,7 +47,7 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 
 				add_action( 'admin_init', array( $this, 'psmi_init' ));
 				add_action( 'admin_init', array( $this, 'psmi_page_init' ));
-				add_action( 'admin_init', array( $this, 'psmi_add_meta_box' ));
+				add_action( 'add_meta_boxes', array( $this, 'psmi_add_meta_box' ));
 				add_action( 'admin_menu', array( $this, 'psmi_add_page' ) );
 				add_action( 'save_post', array( $this, 'psmi_save_menuitems') );
 				
@@ -66,16 +66,7 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 		* install 
 		**/
 		public static function psmi_install() {
-			
-			$menu_id ='';
-			$menus = wp_get_nav_menus();
-			foreach ( $menus as $menu) {
-				if (wp_get_nav_menu_items( $menu->term_id, array( 'update_post_term_cache' => false ) )) {
-					$menu_id = $menu->term_id;
-					break;
-				}
-			}
-			add_option('psmi_defaults', array('post_type'=>array('page'),'menu_id'=>$menu_id));
+			// do nothing for now
 		}
 
 
@@ -84,7 +75,8 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 		* uninstall 
 		**/
 		public static function psmi_uninstall() {
-			delete_option('psmi_defaults');
+			// do nothing for now
+			//delete_option('psmi_defaults');
 		}
 
 
@@ -95,15 +87,25 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 		**/
 		function psmi_init() {
 			//initialize
-			$this->psmi_defaults = array_merge($this->psmi_defaults, get_option( 'psmi_defaults' ));
+			$menu_id ='';
+			$menus = wp_get_nav_menus();
+			foreach ( $menus as $menu) {
+				if (wp_get_nav_menu_items( $menu->term_id, array( 'update_post_term_cache' => false ) )) {
+					$menu_id = $menu->term_id;
+					break;
+				}
+			}
+			
+			$this->psmi_defaults = get_option( 'psmi_defaults' ) 
+				? get_option( 'psmi_defaults' ) 
+				: array('post_type'=>array('page'),'menu_id'=>$menu_id);
 
 			if(function_exists('load_plugin_textdomain')) {
 				load_plugin_textdomain(PSMI_TEXTDOMAIN, false, dirname(plugin_basename( __FILE__ )) . '/l10n/');
 			}
 			
 		}
-		
-		
+
 		
 		/**
 		 * adds plugin options page
@@ -163,7 +165,7 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 
 			add_settings_field(
 				'psmi-posttype-checkbox', // ID
-				' ', // Title 
+				__('Select Post Type', PSMI_TEXTDOMAIN), // Title 
 				array( $this, 'psmi_posttype_checkbox_cb' ), // Callback
 				'psmi-setting-admin', // Page
 				'psmi-settings' // Section           
@@ -175,10 +177,15 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 		 * Prints the menu select box 
 		**/	
 		public function psmi_posttype_checkbox_cb() {
-			if($this->psmi_defaults['post_type'] ){
-				foreach($this->psmi_defaults['post_type'] as $post_types)
-					echo "<input type='hidden' name='psmi_defaults[post_type][]' value='$post_types' />";
+			$args = array( 'public'   => true,  '_builtin' => false );
+			$custom_post_types = array_merge(array('post', 'page'), array_values(get_post_types($args, 'names')));
+			echo '<ul>';
+			foreach($custom_post_types as $cpt => $name){
+				$checked = (!empty($this->psmi_defaults['post_type']) && $this->psmi_defaults['post_type'][0]!='' && in_array($name, $this->psmi_defaults['post_type'])) ? 'checked="checked"' :  '';
+				
+				echo '<li><input type="checkbox" style="margin:1px 5px 0;" '.$checked.' name="psmi_defaults[post_type][]" value="'.$name.'" />'. $name .'</li>';
 			}
+			echo '</ul>';
 		}
 
 
@@ -187,7 +194,7 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 		 * Prints the Section text
 		**/
 		public function psmi_print_section_text() {
-			echo __('Select which menu you want to use :', PSMI_TEXTDOMAIN);
+			//echo __('Select which menu you want to use :', PSMI_TEXTDOMAIN);
 		}
 		
 		
@@ -198,7 +205,7 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 
 			$all_menus = wp_get_nav_menus();
 			if($all_menus){
-				echo "<select id='psmi_select_menu' name='psmi_defaults[menu_id]' >";
+				echo "<select style='min-width:120px;' id='psmi_select_menu' name='psmi_defaults[menu_id]' >";
 				$selected = ('' == $this->psmi_defaults['menu_id'])? 'selected="selected"' : '' ;
 				echo "<option value='' {$selected} >".__('Select Menu', PSMI_TEXTDOMAIN)."</options>";
 				foreach($all_menus as $menu){
@@ -246,7 +253,7 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 			echo "<p><strong>".__('Current Menu: ',  PSMI_TEXTDOMAIN).$menu_object->name."</strong></p>";
 			if ($menu_items) {
 			
-				_e("<p>Select menu items to hide in this page.</p>", PSMI_TEXTDOMAIN);
+				_e("<p>Select menu items to hide in this page. Top level menu items are marked bold.</p>", PSMI_TEXTDOMAIN);
 				
 				$currentpage_items =get_post_meta($post->ID, PSMI_TEXTDOMAIN.'_currentpage_items', true);
 				$menu_list = '<ul id="menu-' . $this->psmi_defaults['menu_id'] . '">';
