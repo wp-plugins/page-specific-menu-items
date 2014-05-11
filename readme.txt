@@ -1,8 +1,8 @@
 ﻿=== Page Specific Menu Items ===
-Tags: page specific menu items, menu, menu items, page wise menu,
+Tags: page specific menu items, post specific menu items, menu, menu items, page wise menu, post wise menu,  wordpress menu, 
 Requires at least: 3.5
-Tested up to: 3.8
-Stable tag: 1.4.2
+Tested up to: 3.9.1
+Stable tag: 1.4.3
 License: GPLv3
 Contributors: dharmapoudel
 
@@ -21,7 +21,24 @@ Also allows users choose which menu to use for cherrypicking menu items page wis
 * Check the items you want to hide from **pages > edit > Page Specific Menu Items**
 * View the page and the selected items should be gone.
 
-If you found any bugs/issues please report and I'll try to fix them asap.
+**How does this plugin works?**
+
+* This plugin adds 'hide_this_item' class to selected menu items.
+
+**Shall I install plugin first or create menu first?**
+
+* It does not matter whether you first create menu and then install this plugin or vice versa.
+
+**Does this plugin works on custom post type pages?**
+
+* Yes it does.
+
+**This plugin does not work for me?**
+
+* It should since it works by adding class. Only case it does not work is when 'hide_this_item' rules is overriden by other syles (having low value in specificity). 
+* This is this plugins issue. 
+
+Please read the readme.txt file line by line before commenting. Only after that give me 5 stars. :) If you found any bugs/issues please report and I'll try to fix them asap.
 
 == Installation ==
 
@@ -42,6 +59,10 @@ If you found any bugs/issues please report and I'll try to fix them asap.
 2. Page Specific Menu Items: page specific settings
 
 == Changelog ==
+
+= 1.4.3 (2014-5-10) =
+* Added more weight to the class 'hide_this_item'
+* Updated faq (please read faq first) and readme file
 
 = 1.4.2 (2014-2-4) =
 * Added support for custom post types
@@ -75,3 +96,16 @@ If you found any bugs/issues please report and I'll try to fix them asap.
 = How does this plugin works? =
 
 This plugin adds 'hide_this_item' class to selected menu items.
+
+= Shall I install plugin first or create menu first? =
+
+It does not matter whether you first create menu and then install this plugin or vice versa.
+
+= Does this plugin works on custom post type pages? =
+
+* Yes it does.
+
+= What are its limitations? =
+
+* Clearly this plugin works for  WordPress Pages, Default/Custom Posts .
+* It does not work on WordPress archives, 404, etc for now. I'll support them as soon as I get time.
