@@ -3,7 +3,7 @@
  * Plugin Name: Page Specific Menu Items
  * Plugin URI: http://www.wordpress.org/plugins
  * Description: This plugin allows you to select menu items page wise.
- * Version: 1.4.2
+ * Version: 1.4.3
  * Author: Dharma Poudel (@rogercomred)
  * Author URI: https://www.twitter.com/rogercomred
  * Text Domain: page-specific-menu-items
@@ -303,7 +303,7 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 		function psmi_hide_menuitems(){
 		
 			echo '<style type="text/css" media="screen">';
-			echo '.menu-item.hide_this_item{ display:none; }';
+			echo 'li.menu-item.hide_this_item{ display:none !important; }';
 			echo '</style>';
 			
 		}
