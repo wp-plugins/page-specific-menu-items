@@ -36,7 +36,7 @@ Also allows users choose which menu to use for cherrypicking menu items page wis
 **This plugin does not work for me?**
 
 * It should since it works by adding class. Only case it does not work is when 'hide_this_item' rules is overriden by other syles (having low value in specificity). 
-* This is this plugins issue. 
+* This is not actually this plugins issue. 
 
 Please read the readme.txt file line by line before commenting. Only after that give me 5 stars. :) If you found any bugs/issues please report and I'll try to fix them asap.
 
