@@ -35,8 +35,16 @@ Also allows users choose which menu to use for cherrypicking menu items page wis
 
 **This plugin does not work for me?**
 
-* It should since it works by adding class. Only case it does not work is when 'hide_this_item' rules is overriden by other syles (having low value in specificity). 
-* This is not actually this plugins issue. 
+* It should since it works by adding class. Only case it does not work is when 'hide_this_item' rules is overriden by other syles (having low value in specificity).
+* This is not actually this plugins issue.
+
+= Recommended Plugins =
+
+The following are recommended by the author:
+
+* [BlankPress WordPress Cleaner](http://wordpress.org/plugins/bpwp-cleaner/) - This plugin allows you to clean up the WordPress mess. Better performance, Faster page load, Better security and Better WP experience.
+
+* [BlankPress Theme Framework](https://github.com/dharmapoudel/blankpress) - Simple yet flexible HTML5 blank WordPress theme framework based on underscores. Use this as a base theme for your WP projects.
 
 Please read the readme.txt file line by line before commenting. Only after that give me 5 stars. :) If you found any bugs/issues please report and I'll try to fix them asap.
 
