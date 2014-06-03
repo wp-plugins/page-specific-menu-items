@@ -2,7 +2,7 @@
 Tags: page specific menu items, post specific menu items, menu, menu items, page wise menu, post wise menu,  wordpress menu, 
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv3
 Contributors: dharmapoudel
 
@@ -67,6 +67,10 @@ Please read the readme.txt file line by line before commenting. Only after that 
 2. Page Specific Menu Items: page specific settings
 
 == Changelog ==
+
+= 1.4.4 (2014-6-3) =
+* Removed li from the plugin styles (some users are not using li for menu items)
+* Moved plugin styles to footer
 
 = 1.4.3 (2014-5-10) =
 * Added more weight to the class 'hide_this_item'

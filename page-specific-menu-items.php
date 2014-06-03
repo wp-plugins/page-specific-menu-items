@@ -53,7 +53,7 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 				
 			}else {	// Frontend
 			
-				add_action( 'wp_head', array($this, 'psmi_hide_menuitems'));
+				add_action( 'wp_footer', array($this, 'psmi_hide_menuitems'));
 				add_filter( 'wp_nav_menu_objects', array($this, 'psmi_add_menu_class'), 10, 2);
 				
 			}
@@ -303,7 +303,7 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 		function psmi_hide_menuitems(){
 		
 			echo '<style type="text/css" media="screen">';
-			echo 'li.menu-item.hide_this_item{ display:none !important; }';
+			echo '.menu-item.hide_this_item{ display:none !important; }';
 			echo '</style>';
 			
 		}
