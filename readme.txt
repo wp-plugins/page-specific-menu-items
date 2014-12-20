@@ -1,8 +1,8 @@
 ﻿=== Page Specific Menu Items ===
 Tags: page specific menu items, post specific menu items, menu, menu items, page wise menu, post wise menu,  wordpress menu, 
 Requires at least: 3.5
-Tested up to: 3.9.1
-Stable tag: 1.4.4
+Tested up to: 4.1
+Stable tag: 1.5
 License: GPLv3
 Contributors: dharmapoudel
 
