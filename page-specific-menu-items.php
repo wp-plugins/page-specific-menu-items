@@ -3,7 +3,7 @@
  * Plugin Name: Page Specific Menu Items
  * Plugin URI: http://www.wordpress.org/plugins
  * Description: This plugin allows you to select menu items page wise.
- * Version: 1.5
+ * Version: 1.6
  * Author: Dharma Poudel (@rogercomred)
  * Author URI: https://www.twitter.com/rogercomred
  * Text Domain: page-specific-menu-items
@@ -111,15 +111,25 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 		 * adds plugin options page
 		**/
 		public function psmi_add_page() {
-			add_options_page(
-				'Settings Admin', 
-				__('PS MenuItems', PSMI_TEXTDOMAIN), 
-				'manage_options', 
-				'psmi-setting-admin', 
-				array( $this, 'psmi_create_admin_page' )
-			);
+			$page_hook_suffix= add_options_page(
+								'Settings Admin', 
+								__('PS MenuItems', PSMI_TEXTDOMAIN), 
+								'manage_options', 
+								'psmi-setting-admin', 
+								array( $this, 'psmi_create_admin_page' )
+							);
+			add_action('admin_enqueue_scripts', array($this, 'add_plugin_scripts'), 199);
 		}
 		
+		/**
+		 * adds styles and scripts
+		**/
+		public function add_plugin_scripts(){
+
+        	wp_enqueue_script('psmi-script', plugins_url('/assets/script.js', __FILE__), array( 'jquery' ), '1.0', true);
+        	wp_enqueue_style( 'psmi-style', plugins_url('/assets/style.css', __FILE__), array(), '1.0', 'all' );
+
+        }
 		
 		
 		/**
@@ -249,11 +259,17 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 			$menu_items = wp_get_nav_menu_items( $this->psmi_defaults['menu_id'] );
 			// verify using nonce
 			wp_nonce_field(plugin_basename( __FILE__ ), $this->nonce);
-			
+			echo "<div class='psmi-menucontainer'>";
 			echo "<p><strong>".__('Current Menu: ',  PSMI_TEXTDOMAIN).$menu_object->name."</strong></p>";
 			if ($menu_items) {
 			
 				_e("<p>Select menu items to hide in this page. Top level menu items are marked bold.</p>", PSMI_TEXTDOMAIN);
+
+				echo "<div class='bpwpc_select_row'>";
+	            echo "<a href='#' class='select_all $id'>".__('select all', PSMI_TEXTDOMAIN)."</a>";
+	            echo "<a href='#' class='deselect_all $id'>".__('unselect all', PSMI_TEXTDOMAIN)."</a>";
+	            echo "<a href='#' class='invert_selection $id'>".__('invert selection', PSMI_TEXTDOMAIN)."</a>";
+            	echo "</div>"; 
 				
 				$currentpage_items =get_post_meta($post->ID, PSMI_TEXTDOMAIN.'_currentpage_items', true);
 				$menu_list = '<ul id="menu-' . $this->psmi_defaults['menu_id'] . '">';
@@ -274,6 +290,7 @@ if(!class_exists('Page_Specific_Menu_Items')) {
 			
 			echo $menu_list;
 			echo '<input type="hidden" value="" name="currentpage_items[]" />';
+			echo "</div>";
 			
 		}
 		
