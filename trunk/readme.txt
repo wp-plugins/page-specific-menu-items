@@ -69,7 +69,7 @@ Please read the readme.txt file line by line before commenting. Only after that 
 == Changelog ==
 
 = 1.6 (2015-4-21) =
-* Added option to easily select and disselect menu items
+* Added option to easily select and deselect menu items
 * Compatible with wordPress version 4.2
 
 = 1.4.4 (2014-6-3) =
